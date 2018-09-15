@@ -1,0 +1,44 @@
+<html>
+    <head>
+    <script type = 'text/javascript'>
+    document.addEventListener('JSBridgeLoaded', function (event) {
+      alert('bridge loaded');
+    });
+      function test(type) {
+        switch (type) {
+          case 0:
+          JSBridge.callHandler('excludeTest');break;
+          case 1:
+          JSBridge.callHandler('test');break;
+          case 2:
+          JSBridge.callHandler('testParam','param from js');break;
+          case 3:
+          JSBridge.callHandler('testReturn', function(data) { alert(data); });break;
+          case 4:
+          JSBridge.callHandler('testParamReturn', 'param from js', function(data) { alert(data); });break;
+          case 5:
+          JSBridge.callHandler('testCallback', function(data) { alert(data); });break;
+          case 6:
+          JSBridge.callHandler('test', 'param from js', function(data) {
+            alert(data);
+          });break;
+          case 7:
+          JSBridge.callHandler('testCallback', 'param from js', function(data) { alert(data); });break;
+          default:
+          alert('no hit');
+        }
+      }
+
+    </script>
+    </head>
+    <body>
+        <a href='javascript:test(0)'>excludeTest</a><br/>
+        <a href='javascript:test(1)'>test</a><br/>
+        <a href='javascript:test(2)'>testParam</a><br/>
+        <a href='javascript:test(3)'>testReturn</a><br/>
+        <a href='javascript:test(4)'>testParamReturn</a><br/>
+        <a href='javascript:test(5)'>testCallback</a><br/>
+        <a href='javascript:test(6)'>testParamAnonymousCallback</a><br/>
+        <a href='javascript:test(7)'>testParamCallback</a><br/>
+    </body>
+</html>
